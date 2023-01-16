@@ -7,18 +7,25 @@ import Login from "./components/public_components/Login";
 import Meetings from "./components/private_components/meeting";
 import Header from "./components/public_components/Header";
 function App() {
-    return (<>
+  return (
+    <div className="col-12">
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/meetings" element={<AuthComponent>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/meetings"
+            element={
+              <AuthComponent>
                 <Meetings />
-              </AuthComponent>}/>
-          <Route path="*" element={<p>Not found</p>}/>
+              </AuthComponent>
+            }
+          />
+          <Route path="*" element={<p>Not found</p>} />
         </Routes>
       </BrowserRouter>
-    </>);
+    </div>
+  );
 }
 export default App;
