@@ -57,7 +57,7 @@ const Zoom = ({ username, email }) => {
         ZoomMtg.preLoadWasm();
         ZoomMtg.prepareWebSDK();
         initiateMeeting();
-    }, []);
+    }, [username]);
     const showZoomDiv = () => {
         const div = document.getElementById("zmmtg-root") || null;
         div.style.display = "block";
