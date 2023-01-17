@@ -15,6 +15,7 @@
     "bootstrap": "^5.2.3",
     "crypto-js": "^4.1.1",
     "jsrsasign": "^10.6.1",
+    "mobile-device-detect": "^0.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",

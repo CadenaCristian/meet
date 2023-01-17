@@ -1,15 +1,43 @@
 import React from "react";
 import Zoom from "./Zoom";
+import {
+  isMobile,
+  isBrowser,
+} from "mobile-device-detect";
 import { useAppSelector } from "../../redux/hooks";
 const Meetings = () => {
-    const { userData } = useAppSelector((state) => state.userdata);
-    const [joinMeeting, setJoinMeeting] = React.useState(false);
-    console.log("MEETINGS USER DATA: ", userData);
-    return (<div className="App">
-      {joinMeeting ? (<Zoom username={userData?.username} email={userData?.email}/>) : (<div>
+  const { userData } = useAppSelector((state) => state.userdata);
+  const [joinMeeting, setJoinMeeting] = React.useState(false);
+  console.log("isMobile: ", isMobile);
+  console.log("isBrowser: ", isBrowser);
+
+  return (
+    <div className="App">
+      {joinMeeting ? (
+        <Zoom username={userData?.username} email={userData?.email} />
+      ) : (
+        <div>
           <h1>Meetings</h1>
-          <button type="button" className="btn btn-primary" onClick={() => setJoinMeeting(true)}>Join Meeting</button>
-        </div>)}
-    </div>);
+          <a
+            href="https://us06web.zoom.us/j/82637450777"
+            className="btn btn-primary"
+            target="_blank"
+            rel="noreferrer"
+            hidden={!isMobile}
+          >
+            Abrir con la aplicación
+          </a>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => setJoinMeeting(true)}
+            hidden={!isBrowser}
+          >
+            Unirse a la reunión
+          </button>
+        </div>
+      )}
+    </div>
+  );
 };
 export default Meetings;
