@@ -3,6 +3,7 @@ const initPref = {
     userData: "",
     isAuth: false,
     joinMeeting: false,
+    rol: ""
 };
 const usersSlice = createSlice({
     name: "users",
@@ -17,7 +18,10 @@ const usersSlice = createSlice({
         changeZoomStatus: (state, action) => {
             state.joinMeeting = action.payload;
         },
+        updateRol: (state, action) => {
+            state.rol = action.payload;
+        }
     },
 });
-export const { updateUserNameData, changeAuthStatus, changeZoomStatus } = usersSlice.actions;
+export const { updateUserNameData, changeAuthStatus, changeZoomStatus, updateRol } = usersSlice.actions;
 export default usersSlice.reducer;

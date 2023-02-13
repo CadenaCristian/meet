@@ -1,9 +1,9 @@
 .logo {
-    width: 30%;
+    width: 60%;
 }
 
 @media (min-width: 1024px) {
     .logo {
-        width: 20%;
+        max-width: 20%;
     }
 }

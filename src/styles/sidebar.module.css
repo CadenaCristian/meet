@@ -1,0 +1,29 @@
+.container {
+    background-color: #0d4572;
+    border-top-right-radius: 15px;
+}
+
+.button_active {
+    color: white;
+    background-color: #9FB0CE;
+}
+
+.button_inactive {
+    color: #9FB0CE;
+    background-color: white;
+}
+
+.button_inactive:hover {
+    color: white;
+    background-color: #9FB0CE;
+}
+
+.items {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .items {
+        display: block;
+    }
+}
