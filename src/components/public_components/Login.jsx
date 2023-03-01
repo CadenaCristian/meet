@@ -5,9 +5,13 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { globalAlert } from "../../utils/common/functions";
 import { TYPES } from "../../utils/common/enums";
 import { changeAuthStatus, updateRol, updateUserNameData, } from "../../redux/features/user";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { firestore } from "../../firebase_setup/firebase";
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const [path, setPath] = React.useState("");
+    const collectionRef = collection(firestore, "users");
     const [spinner, setSpinner] = useState(false);
     const { isAuth } = useAppSelector((state) => state.userdata);
     const [dataUserValue, setdataUserValue] = useState({
@@ -15,26 +19,6 @@ const Login = () => {
         password: "",
     });
     const { userName, password } = dataUserValue;
-    const db = [
-        {
-            username: "cristian",
-            password: "1234",
-            rol: "admin",
-            email: "email@gmail.com",
-        },
-        {
-            username: "steven",
-            password: "1234",
-            rol: "user",
-            email: "email@gmail.com",
-        },
-        {
-            username: "linda",
-            password: "1234",
-            rol: "user",
-            email: "email@gmail.com",
-        },
-    ];
     const setDataUser = ({ target }) => {
         setdataUserValue({
             ...dataUserValue,
@@ -42,24 +26,34 @@ const Login = () => {
         });
     };
     const login = async () => {
+        let userData = [];
         setSpinner(true);
-        const userdata = db.find((element) => element.username === userName);
-        if (userdata === undefined) {
-            globalAlert(TYPES.WARNING, "Usuario", "El usuario ingresado no existe");
-        }
-        else if (userdata.username === userName && userdata.password === password) {
-            dispatch(updateUserNameData(userdata));
-            dispatch(changeAuthStatus(true));
-            dispatch(updateRol(userdata?.rol));
-            navigate(`${userdata?.rol === "admin" ? "/admin/dashboard" : "/meetings"}`);
-        }
-        else if (userdata.username === userName && userdata.password !== password) {
-            globalAlert(TYPES.ERROR, "Usuario", "La contraseña ingresada es incorrecta");
-        }
-        setSpinner(false);
+        const q = query(collectionRef, where("userData.nickName", "==", `${userName}`));
+        const unsub = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                userData.push({ ...doc.data(), id: doc.id });
+            });
+            if (userData.length < 1 || userData === undefined) {
+                globalAlert(TYPES.WARNING, "Usuario", "El usuario ingresado no existe", 2000);
+            }
+            else if (userData.length > 0) {
+                dispatch(updateUserNameData({
+                    id: userData[0]?.id,
+                    complexId: userData[0]?.complexId,
+                    nickName: userData[0]?.userData?.nickName,
+                }));
+                dispatch(changeAuthStatus(true));
+                dispatch(updateRol(userData[0]?.userData?.rol));
+                navigate(`${userData[0]?.userData?.rol === "admin"
+                    ? setPath("/admin/dashboard")
+                    : setPath("/meetings")}`);
+            }
+            setSpinner(false);
+            return () => unsub();
+        });
     };
     if (isAuth)
-        return <Navigate to="/meetings"/>;
+        return <Navigate to={`${path}`}/>;
     return (<>
       <div className={`${styles.loginForm}`}>
         <div className="col-10 col-md-3 border border-secondary-subtle rounded p-3">

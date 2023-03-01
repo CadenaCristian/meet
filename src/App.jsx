@@ -4,12 +4,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthComponent from "./components/auth/AuthComponent";
 import Home from "./components/public_components/Home";
 import Login from "./components/public_components/Login";
-import Meetings from "./components/private_components/user/meeting";
+import Meetings from "./components/private_components/user/Meeting";
 import Header from "./components/public_components/Header";
 import Index from "./components/private_components/admin";
-import Complex from "./components/private_components/admin/complex/complex";
-import Vote from "./components/private_components/admin/vote/vote";
-import User from "./components/private_components/admin/user/user";
+import Complex from "./components/private_components/admin/complex/Complex";
+import Vote from "./components/private_components/admin/vote/Vote";
+import User from "./components/private_components/admin/user/User";
 function App() {
     return (<div className="p-0 m-0">
       <BrowserRouter>

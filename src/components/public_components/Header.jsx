@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../assets/logo.png";
 import styles from "../../styles/header.module.css";
 import { useAppSelector } from '../../redux/hooks';
-import MenuUser from "../private_components/user/menu";
+import MenuUser from "../private_components/user/Menu";
 const Header = () => {
     const { rol } = useAppSelector((state) => state.userdata);
     let component = "";

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initPref = {
-    userData: "",
+    userData: {},
     isAuth: false,
     joinMeeting: false,
-    rol: ""
+    rol: "",
+    idUser: ""
 };
 const usersSlice = createSlice({
     name: "users",
@@ -20,8 +21,11 @@ const usersSlice = createSlice({
         },
         updateRol: (state, action) => {
             state.rol = action.payload;
-        }
+        },
+        getId: (state, action) => {
+            state.idUser = action.payload;
+        },
     },
 });
-export const { updateUserNameData, changeAuthStatus, changeZoomStatus, updateRol } = usersSlice.actions;
+export const { updateUserNameData, changeAuthStatus, changeZoomStatus, updateRol, getId } = usersSlice.actions;
 export default usersSlice.reducer;

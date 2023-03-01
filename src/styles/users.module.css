@@ -2,10 +2,6 @@
     font-size: 14px;
 }
 
-.accordionHeader {
-    font-size: 14px;
-}
-
 .input[type="text"]
 {
     font-size: 14px;
@@ -15,28 +11,26 @@
     font-size: 14px;
 }
 
-.acordionContainer {
-    min-height: 40vh;
-    max-height: 40vh;
+.buttonSize {
+    font-size: 14px;
+}
+
+.tableContainer {
+    max-height: 45vh;
     overflow: auto;
 }
 
-.acordionContainer::-webkit-scrollbar {
+.tableContainer::-webkit-scrollbar {
     width: 3px;
   }
 
-.acordionContainer::-webkit-scrollbar-thumb {
+.tableContainer::-webkit-scrollbar-thumb {
   background-color: white;
   border-radius: 5px;
 }
 
-.switchLabels {
-    padding-top: 2px;
-}
-
 @media (min-width: 1024px) {
-    .acordionContainer {
-        min-height: 50vh;
+    .tableContainer {
         max-height: 88vh;
         overflow: auto;
     }

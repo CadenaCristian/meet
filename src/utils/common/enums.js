@@ -6,3 +6,8 @@ export var TYPES;
     TYPES["INFO"] = "info";
     TYPES["QUESTION"] = "question";
 })(TYPES || (TYPES = {}));
+export var ROL;
+(function (ROL) {
+    ROL["ADMIN"] = "admin";
+    ROL["USER"] = "user";
+})(ROL || (ROL = {}));

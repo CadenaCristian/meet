@@ -1,0 +1,44 @@
+.theadSizeFont {
+    font-size: 10px;
+}
+
+.label {
+    font-size: 10px;
+}
+
+.buttonTextSizeFont {
+    font-size: 10px;
+}
+
+.tableContainer {
+    max-height: 45vh;
+    overflow: auto;
+}
+
+.tableContainer::-webkit-scrollbar {
+    width: 3px;
+  }
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 5px;
+}
+
+@media (min-width: 1024px) {
+    .tableContainer {
+        max-height: 88vh;
+        overflow: auto;
+    }
+
+    .theadSizeFont {
+        font-size: 13px;
+    }
+
+    .label {
+        font-size: 13px;
+    }
+
+    .buttonTextSizeFont {
+        font-size: 13px;
+    }
+}

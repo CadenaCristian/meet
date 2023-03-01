@@ -21,13 +21,13 @@ const generateSignature = async (sdkKey, sdkSecret, meetingNumber, role) => {
 };
 let sdkKey = "BycCUkbEw25kssgoSiwNgykMnhPs9wVX7c96";
 let apiSecret = "mc9A1c5jvrQv6WjHH5bytPvAfdWHB8rPqaMj";
-let meetingNumber = 82637450777;
+let meetingNumber = 81441045211;
 let role = 0;
 let leaveUrl = "http://localhost:3000/";
 let password = "";
 let signature = "";
 generateSignature(sdkKey, apiSecret, meetingNumber, role).then((data) => (signature = data));
-const Zoom = ({ username, email }) => {
+const Zoom = ({ username }) => {
     React.useEffect(() => {
         const initiateMeeting = () => {
             ZoomMtg.init({

@@ -1,37 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { addDoc, collection, query, onSnapshot, } from "@firebase/firestore";
+import React, { useEffect } from "react";
+import { collection, query, onSnapshot, } from "@firebase/firestore";
 import { firestore } from "../../../firebase_setup/firebase";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "./sidebar";
+import Sidebar from "./Sidebar";
 export default function Index({ children }) {
-    const [userData, setUserData] = useState({
-        name: "",
-        lastName: "",
-    });
-    const { name, lastName } = userData;
-    const navigate = useNavigate();
-    const nav = () => navigate("/meetings");
-    const handleSubmit = (testdata) => {
-        const ref = collection(firestore, "usuarios"); // Firebase creates this automatically
-        let data = {
-            testData: testdata,
-        };
-        try {
-            addDoc(ref, data);
-        }
-        catch (err) {
-            console.log(err);
-        }
-    };
-    const setData = ({ target }) => {
-        setUserData({
-            ...userData,
-            [target.name]: target.value,
-        });
-    };
-    const addData = () => {
-        handleSubmit(userData);
-    };
     useEffect(() => {
         (() => {
             let todosArray = [];
@@ -41,7 +12,6 @@ export default function Index({ children }) {
                     todosArray.push({ ...doc.data(), id: doc.id });
                 });
             });
-            console.log("todosArray: ", todosArray);
         })();
     }, []);
     return (<>
@@ -49,7 +19,7 @@ export default function Index({ children }) {
         <div className="row flex-nowrap">
           <Sidebar />
           <div className="col py-1">
-            <div className="row justify-content-center">
+            <div className="row justify-content-between">
               <> {children} </>
             </div>
           </div>
