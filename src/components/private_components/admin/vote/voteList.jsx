@@ -92,8 +92,8 @@ export default function VoteList({ id, name }) {
                   </h2>
                   <div id={`collapse${index}`} className="accordion-collapse collapse" aria-labelledby={`heading${index}`} data-bs-parent={`#accordion${index}`}>
                     <div className="accordion-body">
-                      <div className="col-12 d-flex justify-content-between pb-2">
-                        <div className="col-6 py-3 d-flex justify-content-start">
+                      <div className="col-12 d-md-flex justify-content-between pb-2 px-0">
+                        <div className="col-md-6 col-12 py-3 d-flex justify-content-start">
                           <button id={pos?.id} type="button" className="col-4 btn btn-outline-warning btn-sm" onClick={() => {
                         setDataAnswers(pos);
                         setModal("show");
@@ -107,15 +107,15 @@ export default function VoteList({ id, name }) {
                             <FontAwesomeIcon icon={faArrowsRotate}/>
                           </button>
                         </div>
-                        <div className="col-4 py-3 d-flex justify-content-end">
-                          <div className="d-flex justify-content-around">
-                            <label className={`${global.label} ${votes.switchLabels} px-2 fw-lighter`}>
+                        <div className="col-md-4 col-12 py-3 d-flex justify-md-content-end">
+                          <div className="col-12 d-flex justify-content-around">
+                            <label className={`${global.label} ${votes.switchLabels} fw-lighter`}>
                               Inactivo
                             </label>
                             <div className="form-switch">
                               <input className="form-check-input" type="checkbox" role="switch" checked={pos?.status} id="flexSwitchCheckDefault" onChange={(e) => chageStatusQuestion(pos?.id, e.target.checked)}/>
                             </div>
-                            <label className={`${global.label} ${votes.switchLabels} px-2 fw-lighter`}>
+                            <label className={`${global.label} ${votes.switchLabels} fw-lighter`}>
                               Activo
                             </label>
                           </div>

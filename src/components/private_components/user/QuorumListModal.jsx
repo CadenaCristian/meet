@@ -2,7 +2,7 @@ import React from 'react';
 export default function QuorumListModal() {
     return (<div className="container-fluid">
           <div className="row justify-content-center">
-            <button type="button" className="col-6 col-md-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" className="col-12 col-md-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Quórum
             </button>
 
