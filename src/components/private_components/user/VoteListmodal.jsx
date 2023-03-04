@@ -43,6 +43,17 @@ export default function VoteListmodal() {
         setChoose("");
         setIdQuestion("");
     };
+    const valVote = () => {
+        if (!choose) {
+            return true;
+        }
+        else if (userData?.vote === false) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
     const valChoose = (text, chooseIdQuestion) => {
         if (choose === text && idQuestion === chooseIdQuestion) {
             return true;
@@ -54,7 +65,7 @@ export default function VoteListmodal() {
     React.useEffect(() => {
         getAllVotesByComplex();
     }, []);
-    // console.log("userData: ", userData);
+    console.log("userData: ", userData);
     return (<div className="container-fluid">
       <div className="row justify-content-center">
         <button type="button" className="col-12 col-md-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -107,7 +118,7 @@ export default function VoteListmodal() {
                   </div>)}
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={addAnswer} disabled={!choose}>
+                <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={addAnswer} disabled={valVote()}>
                   Enviar respuesta
                 </button>
               </div>

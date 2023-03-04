@@ -83,6 +83,9 @@ export default function UserModal({ id, userData, modal, rol, }) {
     const updateUser = async () => {
         setButtonSpinner(true);
         try {
+            let obj = dataUserForm;
+            obj.rol = rol;
+            console.log("obj: ", obj);
             await updateDoc(doc(firestore, "users", userData?.id), {
                 userData: dataUserForm,
             });

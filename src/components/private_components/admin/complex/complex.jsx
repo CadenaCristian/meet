@@ -16,9 +16,10 @@ export default function Complex() {
     const [complexData, setComplexData] = React.useState({
         name: "",
         address: "",
+        idMeeting: "",
         linkMeeting: "",
     });
-    const { name, address, linkMeeting } = complexData;
+    const { name, address, idMeeting, linkMeeting } = complexData;
     const setDataForm = ({ target }) => {
         setComplexData({
             ...complexData,
@@ -31,6 +32,7 @@ export default function Complex() {
         setComplexData({
             name: "",
             address: "",
+            idMeeting: "",
             linkMeeting: "",
         });
     };
@@ -42,6 +44,7 @@ export default function Complex() {
                 todosArray.push({ ...doc.data(), id: doc.id });
             });
             if (todosArray.length > 0) {
+                console.log("NUM: ", todosArray[0]?.idMeeting?.replace(/\s/g, ""));
                 todosArray.sort((a, b) => a.name.localeCompare(b.name, "en", { numeric: true }));
                 setAllComplexData(todosArray);
             }
@@ -71,6 +74,8 @@ export default function Complex() {
             ...complexData,
             name: data?.name,
             address: data?.address,
+            idMeeting: data?.idMeeting,
+            linkMeeting: data?.linkMeeting,
         });
         setId(data?.id);
     };
@@ -99,7 +104,9 @@ export default function Complex() {
             return true;
         }
         else if (complexData.name === copyComplexData?.name &&
-            complexData.address === copyComplexData?.address) {
+            complexData.address === copyComplexData?.address &&
+            complexData.idMeeting === copyComplexData?.idMeeting &&
+            complexData.linkMeeting === copyComplexData?.linkMeeting) {
             return true;
         }
         else {
@@ -111,7 +118,7 @@ export default function Complex() {
     }, []);
     return (<div className="container">
       <div className="row justify-content-between">
-        <div className={`col-12 col-md-6 text-center ${global.tableContainer}`}>
+        <div className={`col-12 col-md-7 text-center ${global.tableContainer}`}>
           {spinner ? (<div className="row justify-content-center col-12">
               <div className="spinner-border text-primary" role="status"></div>
             </div>) : allComplexData.length > 0 ? (<table className="table table-responsive table-hover">
@@ -122,6 +129,9 @@ export default function Complex() {
                   </th>
                   <th className={`text-center ${global.theadSizeFont}`}>
                     Dirección del conjunto
+                  </th>
+                  <th className={`text-center ${global.theadSizeFont}`}>
+                    Id de la reunión
                   </th>
                   <th className={`text-center ${global.theadSizeFont}`}>
                     Link de la reunión
@@ -139,6 +149,9 @@ export default function Complex() {
                       </td>
                       <td className={`text-center align-middle ${global.theadSizeFont}`}>
                         {pos?.address}
+                      </td>
+                      <td className={`text-center align-middle ${global.theadSizeFont}`}>
+                        {pos?.idMeeting}
                       </td>
                       <td className={`text-center align-middle ${global.theadSizeFont}`}>
                         <CopyToClipboard text={pos?.linkMeeting}>
@@ -162,7 +175,7 @@ export default function Complex() {
               No hay conjuntos por el momento, ingresa el primero!
             </div>)}
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12 col-md-5">
           <form>
             <div className="mb-3">
               <label className={`${global.label} form-label`}>
@@ -175,6 +188,12 @@ export default function Complex() {
                 Dirección del conjunto
               </label>
               <input id="address" name="address" type="text" value={address.toUpperCase()} className="form-control" onChange={(e) => setDataForm(e)}/>
+            </div>
+            <div className="mb-3">
+              <label className={`${global.label} form-label`}>
+                Id de la reunión
+              </label>
+              <input id="idMeeting" name="idMeeting" type="number" value={idMeeting} className="form-control" onChange={(e) => setDataForm(e)}/>
             </div>
             <div className="mb-3">
               <label className={`${global.label} form-label`}>

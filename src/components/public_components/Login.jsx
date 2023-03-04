@@ -41,7 +41,9 @@ const Login = () => {
                     id: userData[0]?.id,
                     complexId: userData[0]?.complexId,
                     nickName: userData[0]?.userData?.nickName,
+                    vote: userData[0]?.userData?.vote,
                 }));
+                console.log("userData[0]?.userData: ", userData[0]?.userData);
                 dispatch(changeAuthStatus(true));
                 dispatch(updateRol(userData[0]?.userData?.rol));
                 navigate(`${userData[0]?.userData?.rol === "admin"
